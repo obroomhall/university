@@ -1,0 +1,94 @@
+
+\documentclass[11pt,openright,twoside,a4paper]{report}
+
+% Defining aliases
+\newcommand{\detection}{Detection}%{Block Detection and Pose Estimation}
+\newcommand{\analysis}{Analysis}%{Reconstruction and Analysis}
+\newcommand{\display}{Visualisation}%{Visualisation and Variation}
+\newcommand{\jenga}{Jenga\textsuperscript{\textregistered{}}}
+\newcommand{\mytitle}{\textbf{An Augmented Reality Variation of \jenga{}}}
+\newcommand\todo[1]{\textcolor{red}{#1}}
+%\renewcommand\todo[1]{}
+\newcommand\nameandsecref[1]{\nameref{#1} (\cref{#1})}
+
+\usepackage{xstring}
+\usepackage{enumitem}
+\usepackage{xifthen}
+\usepackage{comment}
+\usepackage{csquotes}
+\usepackage{wrapfig}
+
+
+\newcommand\blockwidth{0.8}
+\newcommand\blockheight{\the\numexpr\blockwidth*3/5}
+\newcommand\blockseparation{0.1}
+
+\newcommand{\drawblockrow}[4]{
+    \begin{tikzpicture}
+        \draw[rounded corners] (0, 0) rectangle (\the\numexpr\blockwidth*3+\blockseparation*2, \the\numexpr\blockheight) {};
+        
+        \ifthenelse{\isempty{#1}}{}{\draw[rounded corners] (0, \the\numexpr\blockheight+\blockseparation) rectangle (\the\numexpr\blockwidth, \the\numexpr\blockheight*2+\blockseparation) {};}
+        
+        \ifthenelse{\isempty{#2}}{}{\draw[rounded corners] (\the\numexpr\blockwidth+\blockseparation, \the\numexpr\blockheight+\blockseparation) rectangle (\the\numexpr\blockwidth*2+\blockseparation, \the\numexpr\blockheight*2+\blockseparation) {};}
+        
+        \ifthenelse{\isempty{#3}}{}{\draw[rounded corners] (\the\numexpr\blockwidth*2+\blockseparation*2, \the\numexpr\blockheight+\blockseparation) rectangle (\the\numexpr\blockwidth*3+\blockseparation*2, \the\numexpr\blockheight*2+\blockseparation) {};}
+        
+        \draw[rounded corners] (0, \the\numexpr\blockheight*2+\blockseparation*2) rectangle (\the\numexpr\blockwidth*3+\blockseparation*2, \the\numexpr\blockheight*3+\blockseparation*2) {};
+        
+        \IfEqCase{#4}{%
+        {1}{
+            \draw[red] (0, \the\numexpr\blockheight+\blockseparation) -- (\the\numexpr\blockwidth, \the\numexpr\blockheight*2+\blockseparation);
+            \draw[red] (0, \the\numexpr\blockheight*2+\blockseparation) -- (\the\numexpr\blockwidth, \the\numexpr\blockheight+\blockseparation);
+        }
+        {2}{
+            \draw[red] (\the\numexpr\blockwidth+\blockseparation, \the\numexpr\blockheight+\blockseparation) -- (\the\numexpr\blockwidth*2+\blockseparation, \the\numexpr\blockheight*2+\blockseparation);
+            \draw[red] (\the\numexpr\blockwidth+\blockseparation, \the\numexpr\blockheight*2+\blockseparation) -- (\the\numexpr\blockwidth*2+\blockseparation, \the\numexpr\blockheight+\blockseparation);
+        }
+        {3}{
+            \draw[red] (\the\numexpr\blockwidth*2+\blockseparation*2, \the\numexpr\blockheight+\blockseparation) -- (\the\numexpr\blockwidth*3+\blockseparation*2, \the\numexpr\blockheight*2+\blockseparation);
+            \draw[red] (\the\numexpr\blockwidth*2+\blockseparation*2, \the\numexpr\blockheight*2+\blockseparation) -- (\the\numexpr\blockwidth*3+\blockseparation*2, \the\numexpr\blockheight+\blockseparation);
+        }
+    }
+    \end{tikzpicture}
+}
+
+\include{dissertation-style/DissertationDefs}
+\title{\mytitle{}}
+\author{Oliver Broomhall}
+\date{Bachelor of Science in Computer Science with Honours\\The University of Bath\\May 2018}
+
+\crefname{lstlisting}{listing}{listings}
+\Crefname{lstlisting}{Listing}{Listings}
+\crefname{enumi}{Requirement}{Requirements}
+\begin{document}
+\dominitoc
+\setcounter{page}{0}
+\pagenumbering{roman}
+
+\maketitle\newpage
+\consultation{0}\newpage
+\declaration{\mytitle{}}{Oliver Broomhall}\newpage
+
+\input{chapters/abstract.tex}\newpage
+\tableofcontents\newpage
+\listoffigures\newpage
+
+\input{chapters/acknowledgements}
+\input{chapters/introduction}
+\input{chapters/literature}
+\input{chapters/requirements}
+\input{chapters/design}
+\input{chapters/implementation}
+\input{chapters/evaluation}
+\input{chapters/conclusions}
+
+\bibliography{Bibliography}
+
+\appendix
+\input{appendices/requirements.tex}
+\input{appendices/contributing.tex}
+\input{appendices/ethics.tex}
+\input{appendices/results.tex}
+\input{appendices/code.tex}
+
+\end{document}

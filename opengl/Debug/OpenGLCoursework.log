@@ -1,0 +1,27 @@
+﻿Build started 15/12/2016 22:33:55.
+     1>Project "\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\OpenGLCoursework.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt OpenGLCoursework.cpp
+         OpenGLCoursework.cpp
+     1>\\myfiles\ob346\dos\cm20219-opengl-coursework\objloader.hpp(17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+     1>\\myfiles\ob346\dos\cm20219-opengl-coursework\objloader.hpp(29): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+     1>\\myfiles\ob346\dos\cm20219-opengl-coursework\objloader.hpp(36): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+     1>\\myfiles\ob346\dos\cm20219-opengl-coursework\objloader.hpp(42): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+     1>\\myfiles\ob346\dos\cm20219-opengl-coursework\openglcoursework.cpp(176): warning C4018: '<': signed/unsigned mismatch
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\Debug\OpenGLCoursework.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\Debug\OpenGLCoursework.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\Debug\OpenGLCoursework.lib" /MACHINE:X86 Debug\OpenGLCoursework.obj
+         OpenGLCoursework.vcxproj -> \\myfiles\ob346\dos\CM20219-OpenGL-Coursework\Debug\OpenGLCoursework.exe
+       PostBuildEvent:
+         xcopy "\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\windows-GLUT\bin\glut32.dll" "\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\Debug\" /Y
+         :VCEnd
+         \\myfiles\ob346\dos\CM20219-OpenGL-Coursework\windows-GLUT\bin\glut32.dll
+         1 File(s) copied
+     1>Done Building Project "\\myfiles\ob346\dos\CM20219-OpenGL-Coursework\OpenGLCoursework.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:16.04

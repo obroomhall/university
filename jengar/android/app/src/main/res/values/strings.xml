@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">JengAR</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="server_header">Server</string>
+    <string name="detection_header">Detection</string>
+    <string name="analysis_header">Analysis</string>
+    <string name="display_header">Display</string>
+    <string name="calibration_header">Calibration</string>
+
+    <!-- Server Preferences -->
+    <string name="ip_address_title">IP Address</string>
+    <string name="port_title">Port</string>
+
+    <!-- Detection Preferences -->
+    <string name="block_count_title">Number of blocks</string>
+    <string name="dictionary_title">Dictionary</string>
+
+    <!-- Analysis Preferences -->
+    <string name="method_title">Use advanced analysis</string>
+
+    <!-- Display Preferences -->
+    <string name="arcore_title">Use ARCore</string>
+
+    <!-- Calibration Preferences -->
+    <string name="squaresx_title">Squares X</string>
+    <string name="squaresy_title">Squares Y</string>
+    <string name="square_length_title">Square Length</string>
+    <string name="marker_length_title">Marker Length</string>
+</resources>

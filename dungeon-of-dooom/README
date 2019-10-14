@@ -1,0 +1,46 @@
+////** README OB346 DUNGEON OF DOOOM!!!!! **\\\\
+
+The number of players that can join the game is
+only limited by the size of the maze.
+
+Server, Client and Bot can all connect to a
+ different port specified at command line.
+
+Server must be running for clients to connect.
+ The server will end the game and close when all
+ clients have left the server.
+
+If the map is not chosen by the server before
+ clients connect, clients can send commands that
+ will run when the map is chosen.
+ 
+Clients can exit with ^C or QUIT and the server
+ cleanly remove them from the game.
+ 
+-------------------------------------------------
+-------------------------------------------------
+HOW TO PLAY
+-------------------------------------------------
+-------------------------------------------------
+
+Run Server.java to setup the server.
+Client.java for the client.
+Bot.java to run a bot.
+
+Aim of the game is to collect the required amount
+of gold and escape the dungeon. Move around the 
+dungeon using the north, west, south, and east
+buttons. Collect gold by standing ontop of a piece
+of gold and clicking PICKUP. You can leave at any
+time by pressing the QUIT button. Your progress is
+shown at the top of the window.
+
+There are 5 types of tiles:
+- Empty, shown as a dot
+- Occupied, shown as a P
+- Boundary, shown as a #
+- Gold, shown as a G
+- Exit, shown as an E
+
+The button in the centre of the control panel
+changes the interface between text and images.

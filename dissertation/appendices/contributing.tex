@@ -1,0 +1,56 @@
+\chapter{Contribution}\label{chap:contributing}
+
+\section{OpenCV}
+
+When learning how to find straight lines in images using OpenCV, I found mistakes in the Hough Lines Transform tutorial code. Two sets of code contained logical errors which resulted in only one line being drawn, from a set of multiple detected lines. The code snippets below demonstrate how I was able to fix these bugs, or you can view the currently open pull request on GitHub here: \url{https://github.com/opencv/opencv/pull/14391}.
+
+\vfill
+\begin{multicols}{2}
+\begin{lstlisting}[style=python,caption={Hough Lines tutorial code}]
+lines = cv.HoughLines(...)
+for line in lines:
+    rho,theta = line[0]
+    ...
+\end{lstlisting}
+\begin{lstlisting}[style=python,caption={Fixed array indexing bug}]
+lines = cv.HoughLines(...)
+for line in lines[0]:
+    rho,theta = line
+    ...
+\end{lstlisting}
+\end{multicols}
+
+\begin{multicols}{2}
+\begin{lstlisting}[style=python,caption={Hough Lines P tutorial code}]
+lines = cv.HoughLinesP(...)
+for line in lines:
+    x1,y1,x2,y2 = line[0]
+    ...
+\end{lstlisting}
+\begin{lstlisting}[style=python,caption={Fixed array indexing bug}]
+lines = cv.HoughLinesP(...)
+for line in lines[0]:
+    x1,y1,x2,y2 = line
+    ...
+\end{lstlisting}
+\end{multicols}
+\vfill
+\newpage
+\section{ArUco}
+
+Further, ArUco is a requirement for when compiling MarkerMapper, yet CMake fails when attempting to compile MarkerMapper with the only available version of ArUco (3.1.0). Initially I thought this was due to MarkerMapper not being maintained, but thorough evaluation of the ArUco code found it was missing the implementation of a detection function. The declaration for the function exists in a header file, shown below:
+
+\begin{lstlisting}[style=cpp,caption={Declaration of function in ArUco markerdetector.h}]
+void detect(const cv::Mat& input, std::vector<Marker>& detectedMarkers, cv::Mat camMatrix = cv::Mat(), cv::Mat distCoeff = cv::Mat(), float markerSizeMeters = -1, bool setYPerperdicular = false);
+\end{lstlisting}
+
+But I had to implement the function definition myself, which is as follows:
+
+\begin{lstlisting}[style=cpp,caption={Added function definition}]
+void MarkerDetector::detect(const cv::Mat& input, std::vector<Marker>& detectedMarkers, cv::Mat camMatrix, cv::Mat distCoeff, float markerSizeMeters, bool setYPerpendicular)
+{
+    _impl->detect(input, detectedMarkers, camMatrix, distCoeff, markerSizeMeters, setYPerpendicular);
+}
+\end{lstlisting}
+
+As ArUco is not hosted on any kind of version control system, like GitHub, I was unable to create a pull request with the changes, however, the developers have been made aware of the bug, and it remains to be seen whether it will be fixed with the next release.

@@ -1,0 +1,59 @@
+####################################################
+#                                                  #
+#                    README.TXT                    #
+#                                                  #
+#       Timetabling Application in AnsProlog       #
+#        Displayed with the use of Python3         #
+#                                                  #
+#            Written by Oliver Broomhall           #
+#                Created 17/08/2017                #
+#                                                  #
+####################################################
+#                                                  #
+# Required files:                                  #
+#                                                  #
+# [*] timetable.lp                                 #
+# [*] constraints.lp                               #
+# [*] display.py                                   #
+# [*] failedTimetable.lp                           #
+# [*] edgeCases.lp                                 #
+#                                                  #
+####################################################
+#                                                  #
+# How to run:                                      #
+#                                                  #
+#  To output a timetable, input the whole of the   #
+#   following code onto one line of a terminal:    #
+#                                                  #
+#  $ clingo <aspfile.lp> constraints.lp -n 1       #
+#  --outf=2 | python3 display.py                   #
+#                                                  #
+#  where <aspfile.lp> is either:                   #
+#   timetable.lp                                   #
+#   failedTimetable.lp                             #
+#   edgeCases.lp                                   #
+#                                                  #
+####################################################
+#                                                  #
+# How to interpret the output:                     #
+#                                                  #
+#  The timetable should be output with column      #
+#   headings; Day, Time, Room, Unit, Lecturer and  #
+#   Students. An example entry to the table is as  #
+#   follows:                                       #
+#                                                  #
+#  Day: Wednesday                                  #
+#  Time: 10:00                                     #
+#  Room: 201                                       #
+#  Unit: Physics                                   #
+#  Lecturer: Mr. Doe                               #
+#  Student: John                                   #
+#                                                  #
+#  All entries are shown at the same time, sorted  #
+#   by each successive column.                     #
+#                                                  #
+####################################################
+#                                                  #
+#                     ENJOY!                       #
+#                                                  #
+####################################################

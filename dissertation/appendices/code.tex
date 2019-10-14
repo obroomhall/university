@@ -1,0 +1,73 @@
+\chapter{Code}\label{chap:code}
+
+This chapter shows the most important code files that were created for this project. However, the full code base is available for viewing at my public GitHub repository by following \url{https://github.com/obroomhall/JengAR}, or by using the QR code displayed below. Each file shown in this document references the directory that it can be found in project files.
+
+\vfill
+\section{Code Structure}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{l|l}
+\textbf{Directory} & \textbf{Description} \\ \hline
+\textbf{3rdparty} & A selection of third party libraries used in the project  \\
+\textbf{android} & Android application  \\
+\textbf{client} & Client files  \\
+\textbf{extra} & Tower builder Android application  \\
+\textbf{python} & Markerless detection application  \\
+\textbf{server} & Server files  \\
+\textbf{shared} & Header files used by Client and Server  \\
+\textbf{unity} & Unity analysis program
+\end{tabular}
+\end{table}
+\vfill
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.5\linewidth]{images/code-qr}
+    \caption{GitHub Code}
+    \label{fig:githubqr}
+\end{figure}
+
+\newpage\minitoc
+
+\lstset{basicstyle=\scriptsize}
+
+\begin{landscape}
+\begin{multicols}{2}
+
+\section{Markerless Detection}
+\subsection{hough.py}\label{code:houghpy}
+Python program for finding straight lines in an image using the probabilistic hough transform with OpenCV. Located in \textbf{python/}.
+\texttt{\lstinputlisting[style=python]{code/hough.py}}
+
+\section{Networking}\label{codesec:network}
+\subsection{network.hpp}\label{code:network}
+Superclass used to define various networking functions for use in the Server and Client subclasses. Located in \textbf{shared/include/jengar/}.
+\texttt{\lstinputlisting[style=cpp]{code/network.hpp}}
+
+\section{Detection}\label{codesec:detection}
+
+\subsection{dictionary.cpp}\label{code:dictionary}
+This class is mainly used for converting ::aruco::Dictionary types to cv::aruco::Dictionary types. Located in \textbf{server/src/}.
+\texttt{\lstinputlisting[style=cpp]{code/dictionary.cpp}}
+
+\subsection{native-lib.cpp}\label{code:native}
+JNI class which allows the Android client to use this projects native C++ code. Located in \textbf{android/app/src/main/cpp/}.
+\texttt{\lstinputlisting[style=cpp]{code/native-lib.cpp}}
+
+\section{Analysis}\label{codesec:analysis}
+Unity script that builds a tower from a marker map, analyses block removal feasibility, and then saves the results to a .csv file. Located in \textbf{unity/Assets/}.
+\texttt{\lstinputlisting[style=cpp]{code/StandardTower.cs}}
+
+\section{Extra}\label{codesec:extra}
+
+\subsection{BuildViewModel.java}
+View model for the tower builder activity, handles the logic behind how blocks are moved within the tower, and sends information to the BuildFragment for display. Located in \textbf{extra/app/src/main/java/com/example/jengar/ui/main}.
+\texttt{\lstinputlisting[style=java]{code/BuildViewModel.java}}
+
+\subsection{BuildViewModelTest.java}\label{code:unittests}
+JUnit tests for the tower builder view model. Located in \textbf{extra/app/src/test/java/com/example/jengar/ui/main}.
+\texttt{\lstinputlisting[style=java]{code/BuildViewModelTest.java}}
+
+\end{multicols}
+\end{landscape}

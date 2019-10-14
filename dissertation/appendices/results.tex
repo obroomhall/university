@@ -1,0 +1,57 @@
+\chapter{Analysis Results}\label{chap:results}
+
+\newcommand{\towerandanalysis}[2]{
+    \hspace*{\fill}
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[angle=270,origin=c,width=\linewidth]{images/testing/#1-real.jpg}
+    \caption{#2 Tower} \label{test:#1real}
+    \end{subfigure}
+    \hspace*{\fill}
+    \begin{subfigure}{0.65\textwidth}
+    \includegraphics[width=\linewidth]{images/testing/#1.jpg}
+    \caption{#2 Analysis} \label{test:#1}
+    \end{subfigure}
+    \hspace*{\fill}
+}
+
+\begin{figure}[ht]
+\label{fig:tests}
+
+\towerandanalysis{disorderly}{Disorderly}
+\medskip
+\towerandanalysis{game1}{Game 1}
+
+\end{figure}
+\begin{figure}[htb]\ContinuedFloat
+
+\towerandanalysis{perturn1}{Turn Game 1}
+\medskip
+\towerandanalysis{perturn2}{Turn Game 2}
+\medskip
+\towerandanalysis{perturn3}{Turn Game 3}
+\medskip
+\towerandanalysis{perturn4}{Turn Game 4}
+
+\end{figure}
+\begin{figure}[htb]\ContinuedFloat
+
+\towerandanalysis{perturn5}{Turn Game 5}
+\medskip
+\towerandanalysis{perturn6}{Turn Game 6}
+\medskip
+\towerandanalysis{smallgame1}{Small Game 1}
+\medskip
+\towerandanalysis{smallgame2}{Small Game 2}
+
+\end{figure}
+\begin{figure}[htb]\ContinuedFloat
+
+\towerandanalysis{smallgame3}{Small Game 3}
+\medskip
+\towerandanalysis{smallgame4}{Small Game 4}
+\medskip
+\towerandanalysis{singlestack}{Single Stack}
+\medskip
+\towerandanalysis{structure}{Structure}
+
+\end{figure}

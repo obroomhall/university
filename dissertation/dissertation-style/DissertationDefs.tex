@@ -1,0 +1,205 @@
+%%
+%% Package includes to provide the basic style
+%%
+%\usepackage{harvard}    % Uses harvard style referencing
+\usepackage{graphicx}   % Permits import of various graphics formats
+\usepackage{hyperref}   % Provides hyperlinks to sections automatically
+\usepackage{pdflscape}  % Provides landscape mode for end code listings
+\usepackage{multicol}   % Provides ability to split output into columns
+\usepackage{listings}   % Provides styled code listings
+
+%%
+%% Set some page size changes from the standard article class
+%%
+\usepackage[inner=4cm]{geometry}
+%\usepackage{calc}
+%\setlength{\parskip}{6pt}
+%\setlength{\parindent}{0pt}
+%\addtolength{\hoffset}{-0.5cm}
+%\addtolength{\textwidth}{2.5cm}
+
+%%
+%% Format definitions for the style
+%%
+
+
+
+
+
+%\bibliographystyle{agsm}  %{alpha}
+%\citationstyle{dcu}
+\pagestyle{headings}
+\fussy
+
+
+%%
+%% Definitions to provide layout in the dissertation title pages
+%%
+\newenvironment{spaced}[1]
+  {\begin{minipage}[c]{\textwidth}\vspace{#1}}
+  {\end{minipage}}
+
+
+\newenvironment{centrespaced}[2]
+  {\begin{center}\begin{minipage}[c]{#1}\vspace{#2}}
+  {\end{minipage}\end{center}}
+
+
+\newcommand{\declaration}[2]{
+  \thispagestyle{empty}
+  \begin{spaced}{4em}
+    \begin{center}
+      \LARGE\textbf{#1}
+    \end{center}
+  \end{spaced}
+  \begin{spaced}{3em}
+    \begin{center}
+      Submitted by: #2
+    \end{center}
+  \end{spaced}
+  \begin{spaced}{5em}
+    \section*{COPYRIGHT}
+
+    Attention is drawn to the fact that copyright of this dissertation rests
+    with its author. The Intellectual Property Rights of the products
+    produced as part of the project belong to the author unless otherwise specified
+    below, in accordance with the University of Bath's policy on intellectual property 
+   (see http://www.bath.ac.uk/ordinances/22.pdf).
+
+    This copy of the dissertation has been supplied on condition that anyone
+    who consults it is understood to recognise that its copyright rests with its
+    author and that no quotation from the dissertation and no information
+    derived from it may be published without the prior written consent of
+    the author.
+
+    \section*{Declaration}
+    This dissertation is submitted to the University of Bath in accordance
+    with the requirements of the degree of Bachelor of Science in the
+    Department of Computer Science. No portion of the work in this dissertation
+    has been submitted in support of an application for any other degree
+    or qualification of this or any other university or institution of learning.
+    Except where specifically acknowledged, it is the work of the author.
+  \end{spaced}
+
+  \begin{spaced}{5em}
+    Signed:
+  \end{spaced}
+  }
+
+
+\newcommand{\consultation}[1]{%
+\thispagestyle{empty}
+\begin{centrespaced}{0.8\textwidth}{0.4\textheight}
+\ifnum #1 = 0
+This dissertation may be made available for consultation within the
+University Library and may be photocopied or lent to other libraries
+for the purposes of consultation.
+\else
+This dissertation may not be consulted, photocopied or lent to other
+libraries without the permission of the author for #1 
+\ifnum #1 = 1
+year
+\else
+years
+\fi
+from the date of submission of the dissertation.
+\fi
+\vspace{4em}
+
+Signed:
+\end{centrespaced}
+}
+
+%%
+%% END OF DEFINITIONS
+%%
+
+% TODO notes
+\usepackage[dvipsnames]{xcolor}
+
+% for tables
+\usepackage{booktabs}
+%\usepackage[table,xcdraw]{xcolor}
+
+% for references
+\usepackage[noabbrev,capitalise,nameinlink]{cleveref}
+
+\usepackage{subcaption} % used for multiple figures on same line
+\usepackage{graphicx}
+\graphicspath{ {./images/litreview/} }
+\newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{doi: \detokenize{#1}}}
+
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+
+% for degrees symbol \degree
+\usepackage{textcomp}
+\usepackage{gensymb}
+
+% for drawing arrows
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usetikzlibrary{mindmap}
+
+
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
+\setcitestyle{authoryear,open={(},close={)}}
+\newcommand{\possessivecite}[1]{\citeauthor{#1}{\textcolor{blue}{'s}} (\citeyear{#1})}
+\newcommand{\footurl}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+
+
+% Set this to the language you want to use in your code listings (if any)
+\usepackage{bera}
+\usepackage{times}
+
+\lstset{
+    breaklines,
+    breakatwhitespace,
+    basicstyle=\small,
+    commentstyle=\color{OliveGreen},    % comment style
+    escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+    keywordstyle=\color{blue},       % keyword style
+    stringstyle=\color{Mulberry},
+    emphstyle=\color{Maroon},
+    numbers=left,
+    frame=single,
+    tabsize=2
+}
+
+\lstdefinestyle{python}{
+    language=python,
+    emph={cv},
+}
+
+\lstdefinestyle{cpp}{
+    language=c++,
+    emph={cv,aruco,ucoslam,spdlog}
+}
+
+\lstdefinestyle{java}{
+    language=java
+}
+
+% patch first line numbers
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\patchcmd{\lst@GLI@}% <command>
+  {\def\lst@firstline{#1\relax}}% <search>
+  {\def\lst@firstline{#1\relax}\def\lst@firstnumber{#1\relax}}% <replace>
+  {\typeout{listings firstnumber=firstline}}% <success>
+  {\typeout{listings firstnumber not set}}% <failure>
+\makeatother
+
+% Mini table of contents
+\usepackage{minitoc}
+
+% Larger column separation
+\setlength{\columnsep}{35pt}
+
+\usepackage{wrapfig}

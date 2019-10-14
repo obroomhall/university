@@ -1,0 +1,145 @@
+\chapter{Requirement List}\label{app:requirements}
+
+\newcommand{\requirement}[5]{
+    \item{\label{#5}
+    \textbf{#1}\newline
+    Type: \textit{\IfEqCase{#2}{%
+        {f}{Functional, }
+        {n}{Non-Functional, }
+    }}
+    Priority: \textit{\IfEqCase{#3}{%
+        {h}{\textcolor{Red}{High}, }
+        {m}{\textcolor{YellowOrange}{Medium}, }
+        {l}{\textcolor{Green}{Low}, }
+    }}
+    Status: \textit{\IfEqCase{#4}{%
+        {m}{\textcolor{Green}{Met}}
+        {n}{\textcolor{Red}{Not Met}}
+    }}\par
+}}
+
+\section{\detection}
+
+\begin{enumerate}
+
+\requirement{Must be able to detect the pose of all individual blocks in a tower}{f}{h}{m}{req:pose}
+Most important requirement, block detection is the basis of the system, and is certainly required. Without satisfying this requirement, further stages would not have any data to work with.
+
+\requirement{Must use square planar markers to identify each block}{f}{h}{m}{req:markers}
+Square planar markers are a popular method in augmented reality applications, and for good reason, as they provide more accurate pose estimation than other computer vision techniques.
+
+\requirement{Must be able to account for camera specific distortion}{f}{h}{m}{req:camera}
+This project aims to provide a system that works with various devices, and thus must provide functionality to calibrate the cameras on those devices. Uncalibrated cameras would result in poor pose estimation and therefore inaccurate marker mapping.
+
+\requirement{Must be able to pass pose information to the analysis stage}{f}{h}{m}{req:passdetection}
+Information extracted from the environment in this stage is worthless without communication with the analysis stage, as information without context has no meaning.
+
+\requirement{Must be able to distinguish between a block and a non-block}{f}{h}{m}{req:blocknonblock}
+If the system was unable to tell the different between an empty space and a wooden block in the tower, then it would report false positives for every gap, resulting in highly inaccurate information and precede a pointless analysis.
+
+\requirement{Should be able to determine whether a tower is currently in frame}{f}{m}{m}{req:tower}
+Determining whether a tower is in the frame would have the benefit of a knowing when to try to detect blocks, and would be able to restrict computation until the tower is in frame. However, this is not high priority because the user should only be using the system when they want to detect blocks.
+
+\requirement{Could be able to detect when the tower has changed state}{f}{l}{n}{req:towerstate}
+A useful extension to the system is to be able to detect changes in tower state, with this functionality the application would automatically know when to begin block detection and pose estimation, which takes away the need for the user to be explicit with the system and allows for seemless transition between stages.
+
+\section{\analysis}
+
+\requirement{Must be able to receive pose information from the detection stage}{f}{h}{m}{req:recpose}
+It is essential for information to be gained from the detection stage, without which there would be nothing to analyse.
+
+\requirement{Must be able to reconstruct a virtual tower from block poses}{f}{h}{m}{req:reconstruct}
+Block face poses are useful information, but cannot be used in analysis without first estimating the full pose of the block, thus it is critical for the system to reconstruct the tower before any analysis takes place.
+
+\requirement{Must be able to account for pose estimation inaccuracies in the reconstruction}{f}{h}{n}{req:inaccuracies}
+As the information from the detection stage is only pose estimation, not certain block poses, it is likely that inaccuracies will occur. This could lead to block bodies overlapping, which would be problematic for physics simulations, thus it is required to account for these inaccuracies.
+
+\requirement{Must be able to rank blocks in order of removal feasibility}{f}{h}{m}{req:rank}
+Determining the removal feasibility of blocks is the main function of the system because the user is limited in how well they can analyse the tower themselves. This serves to give an empirical analysis which is stronger than the theory or logic applied by the user.
+
+\requirement{Removal feasibility rankings must be accurate}{n}{h}{m}{req:accuracy}
+The rankings have to be compared with real-world tower states to ensure that the accuracy of the analysis is high because then the user can trust the system with confidence.
+
+\requirement{Must be able to pass block ranking information to the display stage}{f}{h}{m}{req:passanal}
+After analysing the tower state, the results must be passed to the display stage to inform the user. Again, without this inter-stage communication, the display stage would have no information with which to show the user.
+
+\requirement{Could use machine learning techniques}{f}{l}{n}{req:ml}
+Training an algorithm with machine learning would be a fantastic way to improve the quality of the analysis, leading to faster analysis than simulations and also an accurate result. However, this requirement is medium because machine learning is not straightforward and possibly falls out of scope for this project.
+
+\requirement{Should analyse tower in real-time}{n}{m}{n}{req:realtime}
+For the system to keep the attention of the user, the analysis should happen in real time. This is because if the analysis were slow then the user may quickly analyse the tower themselves and make their next move before system's analysis completes.
+
+\requirement{Should use multiple analysis techniques}{f}{h}{n}{req:multianalysis}
+Some analysis techniques may take longer than others, but they may also provide more accurate results, therefore, the system should allow the user to choose between a number of different techniques to suit their needs.
+
+\section{\display}
+
+\requirement{Must be able to receive block ranking information from the analysis stage}{f}{h}{m}{req:recrank}
+The first thing that the display stage needs to do is receive the analysis information, without which there would be nothing to display to the user.
+
+\requirement{Must be able to display removal feasibility rankings to the user}{f}{h}{m}{req:display}
+The user must be presented with the rankings because otherwise they would not be able to use the information to influence their decision for block removal. This is essential because it gives meaning to the system.
+
+\requirement{Must be able to allow the user to return to the detection stage}{f}{h}{m}{req:passdisplay}
+After the user has used the information from this stage and completed their turn, the tower will be in a different state than before, requiring re-detection and analysis, thus the system must be able to let the user return to the previous stages to continue with their game.
+
+\requirement{Should make use of Augmented Reality}{f}{m}{m}{req:augment}
+Augmented reality has the potential to improve games and applications, to include it in this system stands to improve the user experience and allow for higher immersivity. But of course, the system would still be able to provide the user with an analysis without the use of augmented reality.
+
+\requirement{Could incorporate game variants}{f}{l}{n}{req:variants}
+\jenga{} already has several variants, but each one comes with a different set of pieces. Satisfying this requirement would mean that the user would only need one tower set to use multiple variations of the game, Although, the system should focus more on removal analysis before extending into game variants.
+
+\requirement{Must be easy to understand}{n}{h}{m}{req:understand}
+Some game displays are complex, with lots of information being shown to the user at once, which means that the user is unable to comprehend the data. This system should keep the display simple, so the user can quickly take on board the analysis and use it to improve their turn.
+
+\requirement{Should look aesthetically pleasing}{n}{m}{m}{req:aesthetics}
+When an application looks good it stands to impress the user, and make the experience more enjoyable, thus increasing the chance that they consider using the application again in the future.
+
+\section{System}
+
+\requirement{Must be able to run on an Android phone}{f}{h}{m}{req:android}
+Android is the most common smartphone operating system, therefore to gain the widest reach it is crucial that this system can be compiled for Android phone use.
+
+\requirement{Must have a usable graphical user interface}{n}{h}{m}{req:gui}
+The GUI for this project is what the user interacts with to use the system, therefore it is crucial that the interface is designed to be easily used, and not confusing such as displaying too much information at once.
+
+\requirement{Must be lightweight}{f}{h}{m}{req:lightweight}
+New smartphones contain the best hardware available, which can perform most tasks without strain, however, older phones may struggle to support high-intensity tasks. For a wider reach, it is key for the system to work on lower specification phones.
+
+\requirement{Must be self-contained}{f}{h}{n}{req:selfcontained}
+The solution must be a single whole system because it is more convenient for the user to be able to switch between multiple components automatically, than having to switch between them manually. This requirement also covers communication between stages.
+
+\requirement{Transitions between stages should be seemless}{f}{m}{n}{req:transitions}
+It would be extra work for the user if they had to, for example, save a file containing the block pose estimations from the detection stage, and then upload that file to analysis stage. To minimise the work done by the user, these transitions should require no extra work on the user's part.
+
+\requirement{Stages must be easy to understand and use}{f}{h}{m}{req:stageunderstand}
+It must be easy to use because if a user were presented with a difficult to understand system then they may discard it, thus ease of use is paramount to keeping the attention of the user.
+
+\requirement{Must keep the attention of the user}{n}{h}{m}{req:attention}
+The interest of the user is vital for the success of the system because the user would be quick to close down the application if their attention is lost.
+
+\requirement{Must be maintainable}{n}{h}{m}{req:maintainable}
+Maintainability of the system is essential because bugs are common in software, and they vary in severity. It is possible for bugs to slip through even the most extensive of tests, so the software must be written in such a way that it can be easily modified to fix or improve on.
+
+\requirement{Must be modular and have low coupling}{n}{h}{m}{req:modular}
+One way in which the system can be made to be maintainable is by keeping it modular, this is because a modular system is easier to understand. For the system to be truely modular, the interdependence between the modules, or coupling, must be kept low.
+
+\requirement{Must be extendable}{n}{h}{m}{req:extendable}
+All projects can be improved upon, especially those with fixed timescales. With only 7 months from beginning to end of this project, not every avenue can be explored, therefore the ability to extend the project must be ensured.
+
+\section{Additional}\label{sec:req:additional}
+
+\requirement{Must use a client/server architecture}{f}{h}{m}{req:clientserver}
+This requirement was set when a compromise was made to change the architecture of the application to client/server, this means that there is less restriction on the software used to map markers and analyse the tower.
+
+\requirement{Communication with the server must be asynchronous}{n}{h}{m}{req:comms}
+It is essential that using a server does not affect the user, to do this communication with the server should not block the application from running.
+
+\requirement{The server must not save any of the camera frames it receives}{f}{h}{m}{req:privacy}
+Privacy is concern when using a server because the images may contain personal information, this means that any frames received should be used immediately for marker detection, and then discarded.
+
+%\requirement{Must use a client/server architecture}{f}{h}{m}{req:clientserver}
+
+%\requirement{Must use a client/server architecture}{f}{h}{m}{req:clientserver}
+
+\end{enumerate}
